@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fun Proj</title>
+</head>
+<style>
+    /* Styling for the heading */
+    h1 {
+        font-family: "Nunito";
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 20px;
+        color: #ffffff;
+    }
+
+    /* Styling for the GIF container */
+    .gif {
+        display: flex;
+        justify-content: center;
+    }
+
+    /* Styling for the body */
+    body {
+        background-image: linear-gradient(135deg, #EE9CA7 10%, #FFDDE1 100%);
+        height: 100vh;
+    }
+
+    /* Styling for the "No" button */
+    #noButton {
+        position: absolute;
+        margin-left: 150px;
+        transition: 0.5s;
+        margin-top: 30px;
+    }
+
+    /* Styling for the "Yes" button */
+    #yesButton {
+        position: absolute;
+        margin-right: 150px;
+        margin-top: 30px;
+    }
+
+    /* Styling for the text below the buttons */
+    .text {
+        font-family: "Nunito";
+        font-size: 25px;
+        font-weight: bold;
+        color: white;
+        text-align: center;
+        margin-top: 20px;
+        margin-bottom: 0px;
+    }
+
+    /* Styling for the button container */
+    .buttons {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        margin-top: 20px;
+        margin-left: 20px;
+        margin-right: 10px;
+    }
+
+    /* Styling for the buttons */
+    .btn {
+        background-color: #EE9CA7;
+        color: white;
+        font-weight: 600;
+        padding: 15px 32px;
+        text-align: center;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+        border: none;
+        border-radius: 12px;
+        transition: background-color 0.3s ease;
+        box-shadow: 0 3px 3px black;
+    }
+
+    /* Hover effect for the buttons */
+    .btn:hover {
+        background-color: #ffffff;
+        color: #EE9CA7;]
+        
+    }
+
+    /* Styling for the GIF container */
+    .gif {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+</style>
+<body>
+    <!-- Heading -->
+    <div>
+        <h1>Do you wanna learn something new??</h1>
+    </div>
+
+    <!-- GIF container -->
+    <div class="gif">
+        <img src="img/peach-goma.gif">
+    </div>
+
+    <!-- Button container -->
+    <div class="buttons">
+        <!-- "Yes" button with an onclick event to navigate to "yest.html" -->
+        <button class="btn" id="yesButton" onclick="nextPage()">Yes</button>
+        
+        <!-- "No" button with onmouseover and onclick events to trigger moveButton -->
+        <button class="btn" id="noButton" onmouseover="moveButton()" onclick="moveButton()">No</button>
+
+        <!-- Script section containing JavaScript functions -->
+        <script>
+            // Function to navigate to "yest.html" when the "Yes" button is clicked
+            function nextPage() {
+                window.location.href = "yes.html";
+            }
+
+            // Function to move the "No" button to a random position
+            function moveButton() {
+                // Get references to the "No" and "Yes" buttons
+                var noButton = document.getElementById("noButton");
+                var yesButton = document.getElementById("yesButton");
+
+                // Calculate a random position for the "No" button
+                var x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+                var y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+
+                // Check for overlap with the "Yes" button
+                while (
+                    x < yesButton.offsetLeft + yesButton.offsetWidth + 10 &&
+                    x + noButton.offsetWidth > yesButton.offsetLeft - 10 &&
+                    y < yesButton.offsetTop + yesButton.offsetHeight + 10 &&
+                    y + noButton.offsetHeight > yesButton.offsetTop - 10
+                ) {
+                    // If overlap is detected, recalculate the position
+                    x = Math.random() * (window.innerWidth - noButton.offsetWidth);
+                    y = Math.random() * (window.innerHeight - noButton.offsetHeight);
+                }
+
+                // Set the new position for the "No" button
+                noButton.style.left = `${x}px`;
+                noButton.style.top = `${y}px`;
+            }
+        </script>
+    </div>
+</body>
+</html>
